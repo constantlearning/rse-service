@@ -28,6 +28,10 @@ public class ClientService {
         return this.clientRepository.save(client);
     }
 
+    public Client findClientById(Long id){
+        return this.clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
+    }
+
     public List<Client> findAll() {
         List<Client> Clients = this.clientRepository.findAll();
         return Collections.unmodifiableList(Clients);

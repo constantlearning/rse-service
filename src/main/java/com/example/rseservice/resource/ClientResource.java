@@ -25,6 +25,11 @@ public class ClientResource {
         return this.clientService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Client findOneById(@PathVariable Long id) {
+        return this.clientService.findClientById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Client create(@Valid @RequestBody Client client) {
