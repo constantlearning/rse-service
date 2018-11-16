@@ -2,13 +2,11 @@ package com.example.rseservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -25,6 +23,9 @@ public class Client {
 
     @NotNull(message = "clients-3")
     private LocalDate birthDay;
+
+    @OneToMany(mappedBy = "client")
+    private List<Script> scripts;
 
     public Client() {
     }
@@ -74,6 +75,14 @@ public class Client {
         this.birthDay = birthDay;
     }
 
+    public List<Script> getScripts() {
+        return scripts;
+    }
+
+    public void setScripts(List<Script> scripts) {
+        this.scripts = scripts;
+    }
+
     @JsonIgnore
     public boolean isNew() {
         return getId() == null;
@@ -92,5 +101,56 @@ public class Client {
                 ", document='" + document + '\'' +
                 ", birthDay=" + birthDay +
                 '}';
+    }
+
+
+    public static final class ClientBuilder {
+        private Long id;
+        private String name;
+        private String document;
+        private LocalDate birthDay;
+        private List<Script> scripts;
+
+        private ClientBuilder() {
+        }
+
+        public static ClientBuilder aClient() {
+            return new ClientBuilder();
+        }
+
+        public ClientBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ClientBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ClientBuilder document(String document) {
+            this.document = document;
+            return this;
+        }
+
+        public ClientBuilder birthDay(LocalDate birthDay) {
+            this.birthDay = birthDay;
+            return this;
+        }
+
+        public ClientBuilder scripts(List<Script> scripts) {
+            this.scripts = scripts;
+            return this;
+        }
+
+        public Client build() {
+            Client client = new Client();
+            client.setId(id);
+            client.setName(name);
+            client.setDocument(document);
+            client.setBirthDay(birthDay);
+            client.setScripts(scripts);
+            return client;
+        }
     }
 }
