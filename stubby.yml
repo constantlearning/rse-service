@@ -9,9 +9,8 @@
         "id" : 1,
         "type": "javascript",
         "howManyArguments" : 2,
+        "args" : [10, 40]
         "content" : "function sum(p1, p2) { return p1 + p2; }",
-        "arg1" : 10,
-        "arg2" : 40
       }
   response:
     status: 200
