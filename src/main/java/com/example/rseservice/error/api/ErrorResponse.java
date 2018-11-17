@@ -1,4 +1,4 @@
-package com.example.rseservice.error;
+package com.example.rseservice.error.api;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.http.HttpStatus;

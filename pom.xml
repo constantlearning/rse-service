@@ -65,6 +65,12 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+            <version>9.5.1</version>
+        </dependency>
+
         <!-- STUBBY -->
         <dependency>
             <groupId>io.github.azagniotov</groupId>

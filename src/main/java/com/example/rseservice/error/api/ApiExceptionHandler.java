@@ -1,6 +1,6 @@
-package com.example.rseservice.error;
+package com.example.rseservice.error.api;
 
-import com.example.rseservice.service.exception.BusinessException;
+import com.example.rseservice.error.exception.BusinessException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,7 +89,7 @@ public class ApiExceptionHandler {
         try {
             message = apiErrorMessageSource.getMessage(code, args, locale);
         } catch (NoSuchMessageException e) {
-            LOGGER.error("Couldn't find any message for {} code under {} locale.", code);
+            LOGGER.error("Couldn't find any message for {} code under {} locale.", code, locale);
             message = NO_MESSAGE_AVAILABLE;
         }
 
