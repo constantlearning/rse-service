@@ -1,4 +1,4 @@
-package com.example.rseservice.service.exception;
+package com.example.rseservice.error.handler.exception;
 
 import org.springframework.http.HttpStatus;
 
