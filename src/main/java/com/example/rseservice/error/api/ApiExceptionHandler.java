@@ -1,14 +1,12 @@
-package com.example.rseservice.error.handler.api;
+package com.example.rseservice.error.api;
 
-import com.example.rseservice.error.handler.exception.BusinessException;
+import com.example.rseservice.error.exception.BusinessException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -23,7 +21,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE)
 public class ApiExceptionHandler {
 
     private static final String NO_MESSAGE_AVAILABLE = "No message available.";

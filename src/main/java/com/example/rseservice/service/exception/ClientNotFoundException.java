@@ -1,6 +1,6 @@
 package com.example.rseservice.service.exception;
 
-import com.example.rseservice.error.handler.exception.BusinessException;
+import com.example.rseservice.error.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 
 public class ClientNotFoundException extends BusinessException {

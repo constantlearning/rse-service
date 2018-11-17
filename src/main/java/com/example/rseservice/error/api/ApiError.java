@@ -1,4 +1,4 @@
-package com.example.rseservice.error.handler.api;
+package com.example.rseservice.error.api;
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;

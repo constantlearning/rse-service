@@ -1,4 +1,4 @@
-package com.example.rseservice.resource;
+package com.example.rseservice.resource.api;
 
 import com.example.rseservice.entity.Client;
 import com.example.rseservice.service.ClientService;
