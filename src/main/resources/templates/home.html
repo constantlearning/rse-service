@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Inter06</title>
+		<link rel="stylesheet" type="text/css" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/home/style.css">
+		<script type="text/javascript" src="../assets/js/constants.js"></script>
+		<script type="text/javascript" src="../assets/js/home/functions.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid container-todo">
+			<div class="header-content">
+				<div class="row">
+					<div class="col-4">
+						<div class="row">
+							<div class="header-left-container col-12">
+								<h3>Unitri</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-4"></div>
+					<!--<div class="col-4">
+						<div class="row">
+							<div class="header-right-container col-12 text-right">
+								<a href="#" class="logout-btn">Logout</a>
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-3">
+					<div class="my-3 p-3 bg-white rounded shadow-sm">
+						<div class="text-center">
+							<h6 class="border-bottom border-gray pb-2 mb-0">Bem vindo $user</h6>
+						</div>
+						<br/>	
+						<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+							<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="home.html" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+							<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false">Relatório de uso</a>
+							<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="login.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
+						</div>
+					</div>
+					<div class="my-3 p-3 bg-white rounded shadow-sm">
+						<button type="button" class="btn btn-success btn-block">
+							Total a pagar <span class="badge badge-light">R$120,00</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-9">
+					<div class="my-3 p-3 bg-white rounded shadow-sm">
+						<h6 class="border-bottom border-gray pb-2 mb-0">Meus serviços</h6>
+						<div class="media text-muted pt-3">
+							
+							<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+								<div class="d-flex justify-content-between align-items-center w-100">
+									<strong class="text-gray-dark">/malopes/cgi/calc.exe</strong>
+
+									<a href="service_detail.html#1">Editar</a>
+								</div>
+								<span class="d-block">Descrição do serviço aqui...</span>
+								<span class="badge badge-success">R$10,50</span>
+							</div>
+						</div>
+						<div class="media text-muted pt-3">
+							<div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+								<div class="d-flex justify-content-between align-items-center w-100">
+									<strong class="text-gray-dark">/malopes/cgi/api.exe</strong>
+									<a href="service_detail.html#2">Editar</a>
+								</div>
+								<span class="d-block">Descrição do serviço aqui...</span>
+								<span class="badge badge-danger">R$2,50</span>
+							</div>
+						</div>
+						<small class="d-block text-right mt-3">
+						<a href="service_create.html">Novo serviço</a>
+						</small>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>
