@@ -1,6 +1,7 @@
-package com.example.rseservice.entity.repository;
+package com.example.rseservice.repository;
 
-import com.example.rseservice.entity.Client;
+
+import com.example.rseservice.domain.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    Optional<Client> findByDocument(String document);
+    Client findByCpf(String cpf);
+
+    Optional<Client> findById(Long id);
 }
