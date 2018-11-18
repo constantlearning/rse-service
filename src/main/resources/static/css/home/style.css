@@ -1,0 +1,50 @@
+body{
+	background: #f9f9f9;
+}
+
+.header-content{
+	position: relative;
+	width: 100%;
+	height: 15vh;
+	background: yellowgreen;
+	padding: 0px;
+}
+
+.header-content::before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 15vh;
+	opacity: 0.1;
+	background: url(https://cdn.lynda.com/course/584487/584487-636288234690024430-16x9.jpg);
+	background-position: center;
+}
+
+.container-todo{
+	padding: 0px;
+}
+
+.header-left-container{
+	margin: 15px;
+	color: white;
+}
+
+.header-right-container{
+
+	margin: 15px;
+	color: white;
+}
+
+.logout-btn{
+	position: relative;
+	right: 30px;
+	color: white;
+}
+
+.header-left-container h3{
+	margin-top: 5%;
+}
+
+.nav-pills .nav-link.active{
+	background: yellowgreen !important;
+}
