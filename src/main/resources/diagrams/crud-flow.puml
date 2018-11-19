@@ -1,0 +1,106 @@
+@startuml
+
+    title Cadastro de Usuário / Scripts
+
+    actor Usuário
+    entity Plataforma
+    database Recurso
+
+
+    alt Cadastro de Usuário
+        Usuário -> Plataforma: Input de informações para cadastro
+        Plataforma -> Recurso: Persistência de dados
+        Plataforma -> Usuário: Retorna status da operação
+    end
+
+    alt Cadastro de Scripts
+        Usuário -> Plataforma: Autenticação
+        Plataforma -> Usuário: Devolve sessão para acesso
+
+        Usuário -> Plataforma: Input de Informações para cadastro
+        Plataforma -> Recurso: Persistência de dados
+        Plataforma -> Usuário: Retorna status de operação
+    end
+
+@enduml
+
+@startuml
+
+    title Listagem de Scripts / Execuções
+
+    actor Usuário
+    entity Plataforma
+    database Recurso
+
+
+    alt Listagem de Scripts
+        Usuário -> Plataforma: Autenticação
+        Plataforma -> Usuário: Devolve sessão para acesso
+
+        Usuário -> Plataforma: Solicita lista de scripts
+        Plataforma -> Recurso: Solicita scripts associados ao usuário
+        Recurso -> Plataforma: Retorna lista de informações
+
+        Plataforma -> Usuário: Retorna lista de scripts
+    end
+
+    alt Listagem de Execuções
+        Usuário -> Plataforma: Autenticação
+        Plataforma -> Usuário: Devolve sessão para acesso
+
+        Usuário -> Plataforma: Solicita lista de execuções por tempo ou script
+        Recurso -> Plataforma: Retorna lista de informações
+
+        Plataforma -> Usuário: Retorna lista de execuções
+    end
+
+@enduml
+
+@startuml
+
+    title Atualização de informações do usuário
+
+    actor Usuário
+    entity Plataforma
+    database Recurso
+
+
+    Usuário -> Plataforma: Autenticação
+    Plataforma -> Usuário: Devolve sessão para acesso
+
+    Usuário -> Plataforma: Solicita Informações
+    Plataforma -> Recurso: Busca dados associados ao usuário
+    Recurso -> Plataforma: Retorna Dados
+    Plataforma -> Usuário: Retorna Informações associadas
+
+    Usuário -> Plataforma: Solicita alteração de informações
+    Plataforma -> Recurso: Persiste informações alteradas
+
+    Plataforma -> Usuário: Retorna status da solicitação
+
+@enduml
+
+
+@startuml
+
+    title Exclusão de Scripts
+
+        actor Usuário
+        entity Plataforma
+        database Recurso
+
+
+        Usuário -> Plataforma: Autenticação
+        Plataforma -> Usuário: Devolve sessão para acesso
+
+        Usuário -> Plataforma: Solicita lista de scripts
+        Plataforma -> Recurso: Busca scripts associados ao usuário
+        Recurso -> Plataforma: Retorna Dados
+        Plataforma -> Usuário: Retorna Informações associadas
+
+        Usuário -> Plataforma: Solicita exclusão de informações
+        Plataforma -> Recurso: Remove informações solicitadas
+
+        Plataforma -> Usuário: Retorna status da solicitação
+@enduml
+
