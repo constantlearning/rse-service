@@ -24,7 +24,7 @@ public class ServiceController {
     @PostMapping()
     public ResponseEntity create(@Valid @RequestBody ServiceRequest serviceRequest) {
         ServiceD serviceResponse = serviceS.create(serviceRequest);
-        return new ResponseEntity<>(serviceRequest, HttpStatus.CREATED);
+        return new ResponseEntity<>(serviceResponse, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{serviceId}", produces = MediaType.APPLICATION_JSON_VALUE)

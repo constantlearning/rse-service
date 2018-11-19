@@ -2,6 +2,7 @@ package com.example.rseservice.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Entity
@@ -15,7 +16,7 @@ public class ServiceHistories {
     private String executionTime;
 
     @NotNull(message = "clients-3")
-    private LocalDate createdat;
+    private Timestamp createdat;
 
     @ManyToOne
     private ServiceD service;
@@ -23,11 +24,13 @@ public class ServiceHistories {
     public ServiceHistories() {
     }
 
-    public ServiceHistories(String executionTime, LocalDate createdat, ServiceD service) {
+    public ServiceHistories(String executionTime, Timestamp createdat, ServiceD service) {
         this.executionTime = executionTime;
         this.createdat = createdat;
         this.service = service;
     }
+
+
 
     public Long getId() {
         return id;
@@ -45,11 +48,11 @@ public class ServiceHistories {
         this.executionTime = executionTime;
     }
 
-    public LocalDate getCreatedat() {
+    public Timestamp getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(LocalDate createdat) {
+    public void setCreatedat(Timestamp createdat) {
         this.createdat = createdat;
     }
 
