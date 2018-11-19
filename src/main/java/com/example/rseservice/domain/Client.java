@@ -25,7 +25,7 @@ public class Client {
     private boolean enabled;
 
     @OneToMany(mappedBy = "client")
-    private List<Service> services;
+    private List<ServiceD> services;
 
     public Client(String username, String cpf, String password) {
         this.username = username;
@@ -80,11 +80,11 @@ public class Client {
         return enabled;
     }
 
-    public List<Service> getServices() {
+    public List<ServiceD> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<ServiceD> services) {
         this.services = services;
     }
 

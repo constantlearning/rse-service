@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Service {
+public class ServiceD {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,14 +26,14 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private List<ServiceHistories> serviceHistories;
 
-    public Service() {
+    public ServiceD() {
     }
 
-    public Service(Client client, String path, String code, boolean enabled) {
+    public ServiceD(Client client, String path, String code) {
         this.client = client;
         this.path = path;
         this.code = code;
-        this.enabled = enabled;
+        this.enabled = true;
     }
 
     public Long getId() {
@@ -78,7 +78,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" +
+        return "ServiceD{" +
                 "id=" + id +
                 ", client=" + client +
                 ", path='" + path + '\'' +

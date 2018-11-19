@@ -18,12 +18,12 @@ public class ServiceHistories {
     private LocalDate createdat;
 
     @ManyToOne
-    private Service service;
+    private ServiceD service;
 
     public ServiceHistories() {
     }
 
-    public ServiceHistories(String executionTime, LocalDate createdat, Service service) {
+    public ServiceHistories(String executionTime, LocalDate createdat, ServiceD service) {
         this.executionTime = executionTime;
         this.createdat = createdat;
         this.service = service;
@@ -53,11 +53,11 @@ public class ServiceHistories {
         this.createdat = createdat;
     }
 
-    public Service getService() {
+    public ServiceD getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(ServiceD service) {
         this.service = service;
     }
 

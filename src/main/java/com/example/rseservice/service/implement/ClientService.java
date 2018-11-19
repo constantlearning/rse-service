@@ -3,7 +3,6 @@ package com.example.rseservice.service.implement;
 import com.example.rseservice.domain.Client;
 import com.example.rseservice.domain.request.ClientRequest;
 import com.example.rseservice.domain.response.ClientResponse;
-import com.example.rseservice.error.exception.BusinessException;
 import com.example.rseservice.repository.ClientRepository;
 import com.example.rseservice.service.exception.BusinessRuleException;
 import com.example.rseservice.service.exception.ClientNotFoundException;
