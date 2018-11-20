@@ -7,6 +7,8 @@
     database Recurso
 
     Usuário -> Plataforma: Input de informações para cadastro
+    Plataforma -> Plataforma: Verifica se usuário já existe
+'    Tenta buscar usuário
     Plataforma -> Recurso: Persistência de dados
     Plataforma -> Usuário: Retorna status da operação
 
