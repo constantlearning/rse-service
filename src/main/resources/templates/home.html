@@ -3,10 +3,10 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">	<head>
 		<title>Inter06</title>
 		<link rel="stylesheet" type="text/css" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="http://localhost:8084/css/style.css">
-		<link rel="stylesheet" type="text/css" href="http://localhost:8084/css/home/style.css">
-		<script type="text/javascript" src="http://localhost:8084/js/constants.js"></script>
-		<script type="text/javascript" src="http://localhost:8084/js/home/functions.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://localhost:8084/public/css/style.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost:8084/public/css/home/style.css">
+		<script type="text/javascript" src="http://localhost:8084/public/js/constants.js"></script>
+		<script type="text/javascript" src="http://localhost:8084/public/js/home/functions.js"></script>
 	</head>
 	<body>
 		<form th:object="${client}" method="POST" style="margin: 10px">
@@ -46,11 +46,8 @@
                                     <!--<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="login.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>-->
                                 <!--</form>-->
                                 <form th:action="@{/logout}" method="post">
-                                    <input type="submit" value="Sign Out"/>
+                                    <input type="submit" value="Sair"/>
                                 </form>
-
-
-
                             </div>
 						</div>
 						<div class="my-3 p-3 bg-white rounded shadow-sm">
