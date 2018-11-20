@@ -19,12 +19,12 @@ public class ClientService implements ClientServiceI {
     private ClientRepository clientRepository;
 
     @Override
-    public ClientResponse create(ClientRequest clientRequest) {
-        Client client = buildClient(clientRequest);
+    public Client create(Client client) {
         clientExist(client);
+        client.setEnabled(true);
         Client clientSave = clientRepository.save(client);
         clientSaved(clientSave);
-        return new ClientResponse(clientSave.getId(), clientSave.getUsername());
+        return clientSave;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.example.rseservice.service.implement;
 
-import com.example.rseservice.domain.ServiceD;
+import com.example.rseservice.domain.Service;
 import com.example.rseservice.domain.ServiceHistories;
 import com.example.rseservice.domain.request.ServiceHistoriesRequest;
 import com.example.rseservice.domain.response.ServiceHistoriesResponse;
@@ -9,13 +9,12 @@ import com.example.rseservice.repository.ServiceRepository;
 import com.example.rseservice.service.exception.ServiceHistoriesNotFoundException;
 import com.example.rseservice.service.interfaces.ServiceHistoriesI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@org.springframework.stereotype.Service
 public class ServiceHistoriesService implements ServiceHistoriesI {
 
     @Autowired
@@ -49,7 +48,7 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
 
     @Override
     public List<ServiceHistoriesResponse> findAllServiceId(Long id) {
-        Optional<ServiceD> serviceD = serviceRepository.findById(id);
+        Optional<Service> serviceD = serviceRepository.findById(id);
         List<ServiceHistories> serviceHistoriesList = serviceHistoriesRepository.findAllByService(id);
         return buildService(serviceHistoriesList);
     }
@@ -57,7 +56,7 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
     @Override
     public ServiceHistories buildService(ServiceHistoriesRequest serviceRequest) {
 
-        Optional<ServiceD> service = serviceRepository.findById(serviceRequest.getServiceId());
+        Optional<Service> service = serviceRepository.findById(serviceRequest.getServiceId());
         return new ServiceHistories(
                 serviceRequest.getExecutionTime(),
                 serviceRequest.getCreatedAt(),

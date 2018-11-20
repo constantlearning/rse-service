@@ -1,31 +1,25 @@
 package com.example.rseservice.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "clients-1")
     private String username;
 
-    @NotNull(message = "clients-2")
     private String cpf;
 
-    @NotNull(message = "clients-3")
     private String password;
 
-    @NotNull(message = "clients-3")
     private boolean enabled;
 
     @OneToMany(mappedBy = "client")
-    private List<ServiceD> services;
+    private List<Service> services;
 
     public Client(String username, String cpf, String password) {
         this.username = username;
@@ -80,11 +74,11 @@ public class Client {
         return enabled;
     }
 
-    public List<ServiceD> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(List<ServiceD> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 

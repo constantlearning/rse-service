@@ -1,7 +1,7 @@
 package com.example.rseservice.service.implement;
 
 import com.example.rseservice.domain.Client;
-import com.example.rseservice.domain.ServiceD;
+import com.example.rseservice.domain.Service;
 import com.example.rseservice.domain.request.ServiceRequest;
 import com.example.rseservice.domain.response.ServiceResponse;
 import com.example.rseservice.repository.ClientRepository;
@@ -10,13 +10,12 @@ import com.example.rseservice.service.exception.ClientNotFoundException;
 import com.example.rseservice.service.exception.ServiceNotFoundException;
 import com.example.rseservice.service.interfaces.ServiceServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@org.springframework.stereotype.Service
 public class ServiceService implements ServiceServiceI {
 
     @Autowired
@@ -26,35 +25,35 @@ public class ServiceService implements ServiceServiceI {
     private ClientRepository clientRepository;
 
     @Override
-    public ServiceD create(ServiceRequest serviceRequest) {
-        ServiceD service = buildService(serviceRequest);
+    public Service create(ServiceRequest serviceRequest) {
+        Service service = buildService(serviceRequest);
         service = serviceRepository.save(service);
         return service;
     }
 
     @Override
     public ServiceResponse findById(Long id) {
-        Optional<ServiceD> service = serviceRepository.findById(id);
+        Optional<Service> service = serviceRepository.findById(id);
         return buildService(service);
     }
 
     @Override
     public List<ServiceResponse> findAll(Long id) {
-        List<ServiceD> serviceDS = serviceRepository.findAllByClient(id);
+        List<Service> serviceDS = serviceRepository.findAllByClient(id);
         List<ServiceResponse> serviceResponses = buildService(serviceDS);
         return serviceResponses;
     }
 
     @Override
-    public ServiceD buildService(ServiceRequest serviceR) {
+    public Service buildService(ServiceRequest serviceR) {
         Optional<Client> client = clientRepository.findById(serviceR.getClientId());
         if(!client.isPresent()){
             throw new ClientNotFoundException();
         }
-        return new ServiceD(client.get(), serviceR.getPath(),serviceR.getCode());
+        return new Service(client.get(), serviceR.getPath(),serviceR.getCode());
     }
 
-    public ServiceResponse buildService(Optional<ServiceD> serviceR) {
+    public ServiceResponse buildService(Optional<Service> serviceR) {
 
         if(!serviceR.isPresent()){
             throw new ServiceNotFoundException();
@@ -62,23 +61,23 @@ public class ServiceService implements ServiceServiceI {
         return new ServiceResponse(
                 serviceR.get().getId(),
                 serviceR.get().getClient().getId(),
-                serviceR.get().getCode(),
+                serviceR.get().getTitle(),
                 serviceR.get().getPath(),
                 serviceR.get().isEnabled()
         );
     }
 
-    public List<ServiceResponse> buildService(List<ServiceD> serviceR) {
+    public List<ServiceResponse> buildService(List<Service> serviceR) {
 
         List<ServiceResponse> serviceDS = new ArrayList<>();
 
-        for(ServiceD serviceD : serviceR ){
+        for(Service serviceD : serviceR ){
 
             serviceDS.add(
                     new ServiceResponse(
                             serviceD.getId(),
                             serviceD.getClient().getId(),
-                            serviceD.getCode(),
+                            serviceD.getTitle(),
                             serviceD.getPath(),
                             serviceD.isEnabled()
                     ));

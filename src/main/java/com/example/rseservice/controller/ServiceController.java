@@ -1,6 +1,6 @@
 package com.example.rseservice.controller;
 
-import com.example.rseservice.domain.ServiceD;
+import com.example.rseservice.domain.Service;
 import com.example.rseservice.domain.request.ServiceRequest;
 import com.example.rseservice.domain.response.ServiceResponse;
 import com.example.rseservice.service.implement.ServiceService;
@@ -21,21 +21,21 @@ public class ServiceController {
     @Autowired
     private ServiceService serviceS;
 
-    @PostMapping()
-    public ResponseEntity create(@Valid @RequestBody ServiceRequest serviceRequest) {
-        ServiceD serviceResponse = serviceS.create(serviceRequest);
-        return new ResponseEntity<>(serviceResponse, HttpStatus.CREATED);
-    }
-
-    @GetMapping(value = "/{serviceId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getService(@PathVariable("serviceId") Long serviceId) {
-        ServiceResponse service = serviceS.findById(serviceId);
-        return new ResponseEntity<>(service, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/services/{clientId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getServices(@PathVariable("clientId") Long clientId) {
-        List<ServiceResponse> services = serviceS.findAll(clientId);
-        return new ResponseEntity<>(services, HttpStatus.OK);
-    }
+//    @PostMapping()
+//    public ResponseEntity create(@Valid @RequestBody ServiceRequest serviceRequest) {
+//        Service serviceResponse = serviceS.create(serviceRequest);
+//        return new ResponseEntity<>(serviceResponse, HttpStatus.CREATED);
+//    }
+//
+//    @GetMapping(value = "/{serviceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity getService(@PathVariable("serviceId") Long serviceId) {
+//        ServiceResponse service = serviceS.findById(serviceId);
+//        return new ResponseEntity<>(service, HttpStatus.OK);
+//    }
+//
+//    @GetMapping(value = "/services/{clientId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity getServices(@PathVariable("clientId") Long clientId) {
+//        List<ServiceResponse> services = serviceS.findAll(clientId);
+//        return new ResponseEntity<>(services, HttpStatus.OK);
+//    }
 }

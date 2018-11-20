@@ -6,7 +6,7 @@ import com.example.rseservice.domain.response.ClientResponse;
 
 public interface ClientServiceI {
 
-    ClientResponse create(ClientRequest client);
+    Client create(Client client);
 
     ClientResponse findById(Long id);
 

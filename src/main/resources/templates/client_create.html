@@ -18,9 +18,9 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-12">
-								<h3 class="text-center">Login</h3>
+								<h3 class="text-center">Registrar</h3>
 							</div>
-							<form th:action="@{/login}" method="post">
+							<form th:action="@{/save}" method="post">
 								<div class="input-group">
 									<div class="col-12">
 										<label>Usuário</label>
@@ -29,16 +29,19 @@
 										</div>
 									</div>
 									<div class="col-12">
+										<label>Cpf</label>
+										<div class="form-group">
+											<input type="text" name="cpf" class="input-email form-control">
+										</div>
+									</div>
+									<div class="col-12">
 										<label>Senha</label>
 										<div class="form-group">
 											<input type="password" name="password" class="input-password form-control">
 										</div>
 									</div>
-									<div class="col-12 text-right">
-										<a th:href="@{/add}"  class="">Cadastrar</a>
-									</div>
 									<div class="col-12 text-center">
-										<button class="btn btn-success">Entrar</button>
+										<button class="btn btn-success">Cadastrar</button>
 									</div>
 								</div>
 							</form>

@@ -1,38 +1,34 @@
 package com.example.rseservice.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class ServiceD {
+public class Service {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     private Client client;
 
-    @NotNull(message = "clients-2")
     private String path;
 
-    @NotNull(message = "clients-3")
-    private String code;
+    private String title;
 
-    @NotNull(message = "clients-3")
     private boolean enabled;
 
     @OneToMany(mappedBy = "service")
     private List<ServiceHistories> serviceHistories;
 
-    public ServiceD() {
+    public Service() {
     }
 
-    public ServiceD(Client client, String path, String code) {
+    public Service(Client client, String path, String title) {
         this.client = client;
         this.path = path;
-        this.code = code;
+        this.title = title;
         this.enabled = true;
     }
 
@@ -68,21 +64,21 @@ public class ServiceD {
         this.path = path;
     }
 
-    public String getCode() {
-        return code;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
     public String toString() {
-        return "ServiceD{" +
+        return "Service{" +
                 "id=" + id +
                 ", client=" + client +
                 ", path='" + path + '\'' +
-                ", code='" + code + '\'' +
+                ", title='" + title + '\'' +
                 ", enabled=" + enabled +
                 '}';
     }
