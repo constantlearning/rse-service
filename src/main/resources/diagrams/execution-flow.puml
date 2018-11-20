@@ -1,0 +1,69 @@
+@startuml
+    
+    participant Client
+    entity Plataforma
+    entity CGI
+    database Recurso
+
+    autonumber
+
+'   Authentication
+
+    Client -> Plataforma: Solicitação de autenticação
+    activate Plataforma #LightCoral
+    Plataforma -> Plataforma: Verifica credenciais
+    activate Plataforma #DarkSalmon
+
+    Plataforma -> Recurso: Buscar usuário
+    activate Recurso
+    Recurso -> Plataforma: Retorna usuário
+    deactivate Recurso
+    deactivate Plataforma
+
+    Plataforma -> Client: Resposta de autenticação
+    deactivate Plataforma
+
+'   List Scripts
+
+    Client -> Plataforma: Solicita lista de scripts
+    activate Plataforma #LightCoral
+    Plataforma -> Plataforma: Valida sessão
+    activate Plataforma #DarkSalmon
+
+    Plataforma -> Recurso: Busca script associados ao usuário
+    activate Recurso
+    Recurso -> Plataforma: Retorna lista de scripts
+    deactivate Recurso
+    deactivate Plataforma
+    Plataforma -> Client: Retorna lista de scripts
+    deactivate Plataforma
+
+'   Execute script
+
+    Client -> Plataforma: Solicita execução de script
+
+    activate Plataforma #LightCoral
+    Plataforma -> Plataforma: Valida sessão
+    activate Plataforma #DarkSalmon
+
+    Plataforma -> Recurso: Busca script
+    activate Recurso
+    Recurso -> Plataforma: Retorna script
+    deactivate Recurso
+
+    Plataforma -> CGI: Envia script para execução
+
+    activate CGI #IndianRed
+    CGI -> CGI: Realiza parse e executa no ambiente apropriado
+    CGI -> Plataforma: Retorna resultado do script e tempo de execução
+    deactivate CGI
+
+    Plataforma -> Plataforma: Realiza cálculo da execução
+    Plataforma -> Recurso: Persiste informações da execução (tempo / valor)
+    activate Recurso
+    Recurso -> Plataforma: Devolve resultado da persistência
+    deactivate Recurso
+    Plataforma -> Client: Retorna resultado da execução
+    deactivate Plataforma
+    
+@enduml
