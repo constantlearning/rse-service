@@ -1,7 +1,15 @@
 package com.example.rseservice.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
     private String username;
     private String password;
     private boolean enabled;

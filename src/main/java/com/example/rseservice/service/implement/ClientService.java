@@ -8,26 +8,57 @@ import com.example.rseservice.service.exception.BusinessRuleException;
 import com.example.rseservice.service.exception.ClientNotFoundException;
 import com.example.rseservice.service.interfaces.ClientServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientService implements ClientServiceI {
+public class ClientService {
+    @Autowired
+    private DataSource datasource;
 
     @Autowired
     private ClientRepository clientRepository;
 
-    @Override
-    public Client create(Client client) {
+    private void createUser(String username, String rawPassword){
+
+        JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
+        userDetailsService.setDataSource(datasource);
+
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("USER"));
+        User userDetails = new User(username, encoder.encode(rawPassword), authorities);
+        userDetailsService.createUser(userDetails);
+    }
+
+    public Client findByUsername(String username){
+        Optional<Client> clientOptional = clientRepository.findByUsername(username);
+        if(!clientOptional.isPresent()) {
+            throw new ClientNotFoundException();
+        }
+        Client client = clientOptional.get();
+        return clientOptional.get();
+
+    }
+
+    public Client create(Client client, String rawPassword) {
         clientExist(client);
-        client.setEnabled(true);
         Client clientSave = clientRepository.save(client);
         clientSaved(clientSave);
+        createUser(client.getUsername(), rawPassword);
         return clientSave;
     }
 
-    @Override
     public ClientResponse findById(Long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
         if(!clientOptional.isPresent()) {
@@ -37,7 +68,6 @@ public class ClientService implements ClientServiceI {
         return new ClientResponse(client.getId(), client.getUsername());
     }
 
-    @Override
     public ClientResponse update(ClientRequest clientRequest, Long id) {
         // FIELD'S UPDATE -> NAME
         Optional<Client> clientOptional = clientRepository.findById(id);
@@ -51,17 +81,14 @@ public class ClientService implements ClientServiceI {
         return new ClientResponse(clientSave.getId(), clientSave.getUsername());
     }
 
-    @Override
     public void cancelUser(ClientRequest clientRequest) {
 
         Client client = clientRepository.findByCpf(clientRequest.getCpf());
         clientNotExist(client);
-        client.setEnabled(false);
         Client clientSave = clientRepository.save(client);
         clientSaved(clientSave);
     }
 
-    @Override
     public void clientSaved(Client clientSave) {
 
         if(clientSave==null) {
@@ -69,7 +96,6 @@ public class ClientService implements ClientServiceI {
         }
     }
 
-    @Override
     public void clientExist(Client client) {
         Client clientE = clientRepository.findByCpf(client.getCpf());
         if(clientE!=null) {
@@ -77,19 +103,17 @@ public class ClientService implements ClientServiceI {
         }
     }
 
-    @Override
     public void clientNotExist(Client client)  {
         if(client==null){
             throw new ClientNotFoundException();
         }
     }
 
-    @Override
-    public Client buildClient(ClientRequest clientRequest) {
+    /*public Client buildClient(ClientRequest clientRequest) {
         return new Client(
                 clientRequest.getUsername(),
                 clientRequest.getCpf(),
                 clientRequest.getPassword()
         );
-    }
+    }*/
 }

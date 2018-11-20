@@ -14,18 +14,12 @@ public class Client {
 
     private String cpf;
 
-    private String password;
-
-    private boolean enabled;
-
     @OneToMany(mappedBy = "client")
     private List<Service> services;
 
-    public Client(String username, String cpf, String password) {
+    public Client(String username, String cpf) {
         this.username = username;
         this.cpf = cpf;
-        this.password = password;
-        this.enabled = true;
     }
 
     public Client(){}
@@ -54,26 +48,6 @@ public class Client {
         this.cpf = cpf;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
     public List<Service> getServices() {
         return services;
     }
@@ -88,8 +62,6 @@ public class Client {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
                 '}';
     }
 }
