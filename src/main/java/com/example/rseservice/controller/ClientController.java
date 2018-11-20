@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping(value="")
@@ -48,24 +49,10 @@ public class ClientController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
 
-    @GetMapping(value="/home")
-    public ModelAndView home(Client client) {
+    @GetMapping(value={"/home"})
+    public ModelAndView home(Principal principal) {
 
-        ModelAndView mv = new ModelAndView("/home");
-        mv.addObject("client", client);
-        return mv;
-    }
-
-    @GetMapping(value="/")
-    public ModelAndView login(User user) {
-
-        ModelAndView mv = new ModelAndView("/home");
-        return mv;
-    }
-
-    @GetMapping(value="/logging")
-    public ModelAndView logging(Client client) {
-
+        Client client = this.clientService.findByUsername(principal.getName());
         ModelAndView mv = new ModelAndView("/home");
         mv.addObject("client", client);
         return mv;
@@ -80,13 +67,12 @@ public class ClientController {
     }
 
     @PostMapping(value="/save")
-    public ModelAndView save(Client client, BindingResult result) {
+    public ModelAndView save(@RequestParam(value = "password") String password, @RequestParam(value = "username") String username, @RequestParam(value = "cpf") String cpf) {
+        Client client = new Client();
+        client.setUsername(username);
+        client.setCpf(cpf);
+        client = clientService.create(client, password);
 
-        if(result.hasErrors()) {
-            return add(client);
-        }
-        client = clientService.create(client);
-
-        return home(client);
+        return new ModelAndView("redirect:/home");
     }
 }

@@ -1,6 +1,8 @@
 package com.example.rseservice.domain;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -10,9 +12,9 @@ public class ServiceHistories {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String executionTime;
+    private Integer executionTime;
 
-    private Timestamp createdat;
+    private Timestamp createdAt;
 
     @ManyToOne
     private Service service;
@@ -20,9 +22,9 @@ public class ServiceHistories {
     public ServiceHistories() {
     }
 
-    public ServiceHistories(String executionTime, Timestamp createdat, Service service) {
+    public ServiceHistories(Integer executionTime, Timestamp createdAt, Service service) {
         this.executionTime = executionTime;
-        this.createdat = createdat;
+        this.createdAt = createdAt;
         this.service = service;
     }
 
@@ -34,20 +36,20 @@ public class ServiceHistories {
         this.id = id;
     }
 
-    public String getExecutionTime() {
+    public Integer getExecutionTime() {
         return executionTime;
     }
 
-    public void setExecutionTime(String executionTime) {
+    public void setExecutionTime(Integer executionTime) {
         this.executionTime = executionTime;
     }
 
-    public Timestamp getCreatedat() {
-        return createdat;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedat(Timestamp createdat) {
-        this.createdat = createdat;
+    public void setCreatedAt(Timestamp createdat) {
+        this.createdAt = createdat;
     }
 
     public Service getService() {
@@ -63,7 +65,7 @@ public class ServiceHistories {
         return "ServiceHistories{" +
                 "id=" + id +
                 ", executionTime='" + executionTime + '\'' +
-                ", createdat=" + createdat +
+                ", createdat=" + createdAt +
                 ", service=" + service +
                 '}';
     }

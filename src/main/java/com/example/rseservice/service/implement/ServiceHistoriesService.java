@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class ServiceHistoriesService implements ServiceHistoriesI {
+public class ServiceHistoriesService {
 
     @Autowired
     private ServiceHistoriesRepository serviceHistoriesRepository;
@@ -23,7 +23,7 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
     @Autowired
     private ServiceRepository serviceRepository;
 
-
+    /*
     @Override
     public ServiceHistoriesResponse create(ServiceHistoriesRequest serviceRequest) {
         ServiceHistories serviceHistories = buildService(serviceRequest);
@@ -31,7 +31,7 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
         return new ServiceHistoriesResponse(
                 serviceHistories.getService().getId(),
                 serviceHistories.getExecutionTime(),
-                serviceHistories.getCreatedat()
+                serviceHistories.getCreatedAt()
         );
     }
 
@@ -42,7 +42,7 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
         return new ServiceHistoriesResponse(
                 serviceHistories.getService().getId(),
                 serviceHistories.getExecutionTime(),
-                serviceHistories.getCreatedat()
+                serviceHistories.getCreatedAt()
         );
     }
 
@@ -82,9 +82,11 @@ public class ServiceHistoriesService implements ServiceHistoriesI {
                     new ServiceHistoriesResponse(
                             serviceD.getService().getId(),
                             serviceD.getExecutionTime(),
-                            serviceD.getCreatedat()
+                            serviceD.getCreatedAt()
                     ));
         }
         return serviceDS;
     }
+
+    */
 }

@@ -40,7 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("USER"));
             User userDetails = new User("teste", encoder.encode("teste"), authorities);
-
             userDetailsService.createUser(userDetails);
         }
     }
@@ -49,10 +48,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/add", "/public/**").permitAll()
+                .antMatchers("/save", "/add", "/public/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/home",true)
                 .loginPage("/login")
                 .permitAll()
                 .and()

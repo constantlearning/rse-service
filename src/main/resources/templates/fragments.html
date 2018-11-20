@@ -1,0 +1,47 @@
+<html class="container-fluid container-todo" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:fragment="header">
+        <div class="header-content">
+            <div class="row">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="header-left-container col-12">
+                            <h3>Unitri</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+                <!--<div class="col-4">
+                    <div class="row">
+                        <div class="header-right-container col-12 text-right">
+                            <a href="#" class="logout-btn">Logout</a>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="left_menu" class="col-3">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="text-center">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Bem vindo [[${#httpServletRequest.remoteUser}]]!</h6>
+            </div>
+            <br/>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" th:href="@{/home}" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                <!--<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false">Relatório de uso</a>-->
+                <!--<form th:action="@{/logout}" method="post">-->
+                <!--<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="login.html" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>-->
+                <!--</form>-->
+                <form th:action="@{/logout}" method="post">
+                    <input style="margin-top: 10px; width: 100%; text-align: left" class="btn btn-info" type="submit" value="Sair"/>
+                </form>
+            </div>
+        </div>
+        <!--<div class="my-3 p-3 bg-white rounded shadow-sm">
+            <button type="button" class="btn btn-success btn-block">
+                Total a pagar <span class="badge badge-light">R$120,00</span>
+            </button>
+        </div>-->
+    </div>
+</html>

@@ -20,5 +20,5 @@ public interface ClientServiceI {
 
     void clientNotExist(Client client);
 
-    Client buildClient(ClientRequest clientRequest);
+    //Client buildClient(ClientRequest clientRequest);
 }

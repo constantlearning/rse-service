@@ -48,3 +48,11 @@ body{
 .nav-pills .nav-link.active{
 	background: yellowgreen !important;
 }
+
+
+span.truncate-300{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}

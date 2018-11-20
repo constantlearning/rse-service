@@ -13,7 +13,9 @@ public class Service {
     @ManyToOne
     private Client client;
 
-    private String path;
+    private String language;
+
+    private String code;
 
     private String title;
 
@@ -25,9 +27,9 @@ public class Service {
     public Service() {
     }
 
-    public Service(Client client, String path, String title) {
+    public Service(Client client, String code, String title) {
         this.client = client;
-        this.path = path;
+        this.code = code;
         this.title = title;
         this.enabled = true;
     }
@@ -56,12 +58,12 @@ public class Service {
         this.enabled = enabled;
     }
 
-    public String getPath() {
-        return path;
+    public String getCode() {
+        return code;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getTitle() {
@@ -77,10 +79,26 @@ public class Service {
         return "Service{" +
                 "id=" + id +
                 ", client=" + client +
-                ", path='" + path + '\'' +
+                ", code='" + code + '\'' +
                 ", title='" + title + '\'' +
                 ", enabled=" + enabled +
                 '}';
+    }
+
+    public List<ServiceHistories> getServiceHistories() {
+        return serviceHistories;
+    }
+
+    public void setServiceHistories(List<ServiceHistories> serviceHistories) {
+        this.serviceHistories = serviceHistories;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
 
