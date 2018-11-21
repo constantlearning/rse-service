@@ -12,7 +12,7 @@ public class ServiceHistories {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer executionTime;
+    private Long executionTime;
 
     private Timestamp createdAt;
 
@@ -22,7 +22,7 @@ public class ServiceHistories {
     public ServiceHistories() {
     }
 
-    public ServiceHistories(Integer executionTime, Timestamp createdAt, Service service) {
+    public ServiceHistories(Long executionTime, Timestamp createdAt, Service service) {
         this.executionTime = executionTime;
         this.createdAt = createdAt;
         this.service = service;
@@ -36,11 +36,11 @@ public class ServiceHistories {
         this.id = id;
     }
 
-    public Integer getExecutionTime() {
+    public Long getExecutionTime() {
         return executionTime;
     }
 
-    public void setExecutionTime(Integer executionTime) {
+    public void setExecutionTime(Long executionTime) {
         this.executionTime = executionTime;
     }
 

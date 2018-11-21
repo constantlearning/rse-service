@@ -23,6 +23,12 @@ public class ServiceHistoriesService {
     @Autowired
     private ServiceRepository serviceRepository;
 
+    public ServiceHistories create(ServiceHistories serviceHistory){
+        serviceHistory = serviceHistoriesRepository.save(serviceHistory);
+
+        return serviceHistory;
+    }
+
     /*
     @Override
     public ServiceHistoriesResponse create(ServiceHistoriesRequest serviceRequest) {

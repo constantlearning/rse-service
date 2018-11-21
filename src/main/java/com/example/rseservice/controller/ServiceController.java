@@ -5,9 +5,11 @@ import com.example.rseservice.config.feign.response.CGIResponse;
 import com.example.rseservice.config.feign.service.CGIService;
 import com.example.rseservice.domain.Client;
 import com.example.rseservice.domain.Service;
+import com.example.rseservice.domain.ServiceHistories;
 import com.example.rseservice.domain.request.ServiceRequest;
 import com.example.rseservice.domain.response.ServiceResponse;
 import com.example.rseservice.service.implement.ClientService;
+import com.example.rseservice.service.implement.ServiceHistoriesService;
 import com.example.rseservice.service.implement.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,8 @@ public class ServiceController {
     @Autowired
     private CGIService cgiService;
 
+    @Autowired
+    private ServiceHistoriesService serviceHistoriesService;
 //    @PostMapping()
 //    public ResponseEntity create(@Valid @RequestBody ServiceRequest serviceRequest) {
 //        Service serviceResponse = serviceS.create(serviceRequest);
@@ -72,6 +76,11 @@ public class ServiceController {
 
         CGIRequest cgiRequest = dummyCgiRequest(serviceId, service.getLanguage(), 100L, service.getCode(), allRequestParams);
         CGIResponse cgiResponse = cgiService.execute(cgiRequest);
+
+        ServiceHistories sh = new ServiceHistories();
+        sh.setExecutionTime(cgiResponse.getTimeElapsed());
+        sh.setService(service);
+        this.serviceHistoriesService.create(sh);
 
         System.out.println();
         System.out.println(cgiResponse);
