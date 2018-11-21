@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Inter</title>
+		<link rel="stylesheet" type="text/css" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" th:href="@{'/public/css/style.css'}">
+		<link rel="stylesheet" type="text/css" th:href="@{'/public/css/home/style.css'}">
+		<script type="text/javascript" th:src="@{'/public/js/constants.js'}"></script>
+		<script type="text/javascript" th:src="@{'/public/js/login/functions.js'}"></script>
+	</head>
+	<body>
+		<div th:replace="fragments :: header"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div th:replace="fragments :: left_menu"></div>
+				<div class="col-9">
+					<div class="my-3 p-3 bg-white rounded shadow-sm">
+						<form th:action="@{'/profile/'}" method="POST">
+							<div class="text-center">
+								<h6 class=" pb-2 mb-0">
+									Meu perfil
+								</h6>
+							</div>
+							<div class="form-group">
+								<label>Username</label>
+								<input disabled type="text" class="form-control" th:value="${client.username}">
+							</div>
+							<div class="form-group">
+								<label>CPF</label>
+								<input name="cpf" type="text" class="form-control" th:value="${client.cpf}">
+							</div>
+
+							<div class="form-group">
+								<label>Nova senha</label>
+								<input type="password" class="form-control">
+							</div>
+
+							<div class="form-group">
+								<label>Confirme a senha</label>
+								<input type="password" class="form-control">
+							</div>
+
+							<div class="row">
+								<div class="text-center col-12">
+									<button class="btn btn-success">Atualizar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>

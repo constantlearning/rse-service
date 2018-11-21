@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,6 +55,15 @@ public class ClientController {
 
         Client client = this.clientService.findByUsername(principal.getName());
         ModelAndView mv = new ModelAndView("home");
+        mv.addObject("client", client);
+        return mv;
+    }
+
+    @GetMapping(value = "/profile")
+    public ModelAndView profileIndex(Principal principal){
+
+        Client client = this.clientService.findByUsername(principal.getName());
+        ModelAndView mv = new ModelAndView("profile");
         mv.addObject("client", client);
         return mv;
     }
