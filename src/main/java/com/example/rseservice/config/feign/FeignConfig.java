@@ -15,7 +15,7 @@ public class FeignConfig {
     private static Integer CONNECTION_TIMEOUT = 10000;
     private static Integer READ_TIMEOUT = 60000;
 
-    private String cgiUrl = "http://localhost:8000";
+    private String cgiUrl = "http://localhost:4020";
 
     @Bean
     public CGIApi cgiFeign() {

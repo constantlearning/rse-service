@@ -19,7 +19,15 @@ public class CGIRequest {
     private String content;
 
     @NotNull
-    private List<String> arguments;
+    private List<String> args;
+
+    public CGIRequest(@NotBlank Long id, @NotBlank String type, @NotBlank Long howManyArguments, @NotBlank String content, @NotNull List<String> arguments) {
+        this.id = id;
+        this.type = type;
+        this.howManyArguments = howManyArguments;
+        this.content = content;
+        this.args = arguments;
+    }
 
     public CGIRequest() {
     }
@@ -56,12 +64,12 @@ public class CGIRequest {
         this.content = content;
     }
 
-    public List<String> getArguments() {
-        return arguments;
+    public List<String> getArgs() {
+        return args;
     }
 
-    public void setArguments(List<String> arguments) {
-        this.arguments = arguments;
+    public void setArgs(List<String> args) {
+        this.args = args;
     }
 
     @Override
@@ -76,7 +84,7 @@ public class CGIRequest {
         if (howManyArguments != null ? !howManyArguments.equals(that.howManyArguments) : that.howManyArguments != null)
             return false;
         if (content != null ? !content.equals(that.content) : that.content != null) return false;
-        return arguments != null ? arguments.equals(that.arguments) : that.arguments == null;
+        return args != null ? args.equals(that.args) : that.args == null;
     }
 
     @Override
@@ -85,7 +93,7 @@ public class CGIRequest {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (howManyArguments != null ? howManyArguments.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (arguments != null ? arguments.hashCode() : 0);
+        result = 31 * result + (args != null ? args.hashCode() : 0);
         return result;
     }
 
@@ -96,7 +104,7 @@ public class CGIRequest {
                 ", type='" + type + '\'' +
                 ", howManyArguments=" + howManyArguments +
                 ", content='" + content + '\'' +
-                ", arguments=" + arguments +
+                ", args=" + args +
                 '}';
     }
 }
