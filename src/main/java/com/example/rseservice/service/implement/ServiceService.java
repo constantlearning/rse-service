@@ -23,6 +23,17 @@ public class ServiceService {
     @Autowired
     private ClientRepository clientRepository;
 
+    public Service findByIdAndClientId(Long id, Long clientId){
+        Optional<Service> serviceOptional = this.serviceRepository.findByIdAndClientId(id, clientId);
+
+        if(!serviceOptional.isPresent())
+            throw new ServiceNotFoundException();
+
+        Service service = serviceOptional.get();
+
+        return service;
+    }
+
     public Service update(Service service) {
         service = serviceRepository.save(service);
         return service;

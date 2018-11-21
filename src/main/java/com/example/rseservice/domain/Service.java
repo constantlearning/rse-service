@@ -15,6 +15,7 @@ public class Service {
 
     private String language;
 
+    @Column(columnDefinition = "TEXT")
     private String code;
 
     private String title;

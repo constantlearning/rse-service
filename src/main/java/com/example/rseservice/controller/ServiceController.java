@@ -20,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="service")
@@ -61,22 +63,21 @@ public class ServiceController {
         return mv;
     }
 
-    @GetMapping("/cgi")
-    public ModelAndView cgi() {
+    @GetMapping("/cgi/{username}/{serviceId}")
+    @ResponseBody
+    public String cgi(@RequestParam Map<String,String> allRequestParams, @PathVariable("username") String username, @PathVariable("serviceId") Long serviceId) {
 
-        // TESTE DE CHAMADA CGI
+        Client client = this.clientService.findByUsername(username);
+        Service service = this.serviceS.findByIdAndClientId(serviceId, client.getId());
 
-
-        CGIRequest cgiRequest = dummyCgiRequest();
-
+        CGIRequest cgiRequest = dummyCgiRequest(serviceId, service.getLanguage(), 100L, service.getCode(), allRequestParams);
         CGIResponse cgiResponse = cgiService.execute(cgiRequest);
 
         System.out.println();
         System.out.println(cgiResponse);
         System.out.println();
 
-
-        return new ModelAndView("redirect:/home");
+        return cgiResponse.getResult();
     }
 
     @GetMapping("/add")
@@ -121,20 +122,17 @@ public class ServiceController {
         return new ModelAndView("redirect:/home");
     }
 
-    private CGIRequest dummyCgiRequest() {
-        Long id = 1L;
+    private CGIRequest dummyCgiRequest(Long serviceId, String language, Long howManyArguments, String code, Map<String,String> allRequestParams) {
+        //Long id = 1L;
 
-        String type = "php";
+        //String type = "php";
 
-        Long howManyArguments = 2L;
+        //Long howManyArguments = 2L;
 
-        String content = "ZnVuY3Rpb24gc3VtKCR2YWwxLCAkdmFsMiwgJG9wKXsKCWlmKCBlbXB0eSgkdmFsMSkgfCBlbXB0eSgkdmFsMikgfCBlbXB0eSgkb3ApICkKCQlkaWUoKTsKCgkkcmVzdWx0ID0gbnVsbDsKCXN3aXRjaCAoJG9wKSB7CgkJY2FzZSAnYWRpY2FvJzoKCQkJJHJlc3VsdCA9ICR2YWwxICsgJHZhbDI7CgkJCWJyZWFrOwoJCWNhc2UgJ3N1YnRyYWNhbyc6CgkJCSRyZXN1bHQgPSAkdmFsMSAtICR2YWwyOwoJCQlicmVhazsKCQljYXNlICdtdWx0aXBsaWNhY2FvJzoKCQkJJHJlc3VsdCA9ICR2YWwxICogJHZhbDI7CgkJCWJyZWFrOwoJCWNhc2UgJ2RpdmlzYW8nOgoJCQkkcmVzdWx0ID0gJHZhbDEgLyAkdmFsMjsKCQkJYnJlYWs7CgkJZGVmYXVsdDoKCQkJYnJlYWs7Cgl9CgoJcmV0dXJuICRyZXN1bHQ7Cn0";;
+        //String code = "ZnVuY3Rpb24gc3VtKCR2YWwxLCAkdmFsMiwgJG9wKXsKCWlmKCBlbXB0eSgkdmFsMSkgfCBlbXB0eSgkdmFsMikgfCBlbXB0eSgkb3ApICkKCQlkaWUoKTsKCgkkcmVzdWx0ID0gbnVsbDsKCXN3aXRjaCAoJG9wKSB7CgkJY2FzZSAnYWRpY2FvJzoKCQkJJHJlc3VsdCA9ICR2YWwxICsgJHZhbDI7CgkJCWJyZWFrOwoJCWNhc2UgJ3N1YnRyYWNhbyc6CgkJCSRyZXN1bHQgPSAkdmFsMSAtICR2YWwyOwoJCQlicmVhazsKCQljYXNlICdtdWx0aXBsaWNhY2FvJzoKCQkJJHJlc3VsdCA9ICR2YWwxICogJHZhbDI7CgkJCWJyZWFrOwoJCWNhc2UgJ2RpdmlzYW8nOgoJCQkkcmVzdWx0ID0gJHZhbDEgLyAkdmFsMjsKCQkJYnJlYWs7CgkJZGVmYXVsdDoKCQkJYnJlYWs7Cgl9CgoJcmV0dXJuICRyZXN1bHQ7Cn0";;
 
-        List<String> args = new ArrayList<>();
-        args.add("1");
-        args.add("2");
-        args.add("adicao");
-
-        return new CGIRequest(id,type,howManyArguments,content,args);
+        List<String> args = new ArrayList(allRequestParams.values());
+        code = Base64.getEncoder().encodeToString(code.getBytes());
+        return new CGIRequest(serviceId,language,howManyArguments,code,args);
     }
 }
