@@ -14,3 +14,11 @@ public interface CGIApi {
     @Headers("Content-Type: application/json")
     CGIResponse execute(@RequestBody @Valid CGIRequest request);
 }
+
+
+/*
+
+/ FormData parameter
+    @RequestLine("POST /send_photo")
+    @Headers("Content-Type: multipart/form-data")
+    void sendPhoto (@Param("is_public") Boolean isPublic, @Param("photo") FormData photo); */
