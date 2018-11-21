@@ -3,10 +3,10 @@
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">	<head>
 		<title>Inter06</title>
 		<link rel="stylesheet" type="text/css" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="http://localhost:8084/public/css/style.css">
-		<link rel="stylesheet" type="text/css" href="http://localhost:8084/public/css/home/style.css">
-		<script type="text/javascript" src="http://localhost:8084/public/js/constants.js"></script>
-		<script type="text/javascript" src="http://localhost:8084/public/js/home/functions.js"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{'/public/css/style.css'}">
+		<link rel="stylesheet" type="text/css" th:href="@{'/public/css/home/style.css'}">
+		<script type="text/javascript" th:src="@{'/public/js/constants.js'}"></script>
+		<script type="text/javascript" th:src="@{'/public/js/login/functions.js'}"></script>
 	</head>
 	<body>
 			<div th:replace="fragments :: header"></div>
