@@ -53,7 +53,7 @@ public class ClientController {
     public ModelAndView home(Principal principal) {
 
         Client client = this.clientService.findByUsername(principal.getName());
-        ModelAndView mv = new ModelAndView("/home");
+        ModelAndView mv = new ModelAndView("home");
         mv.addObject("client", client);
         return mv;
     }
@@ -61,7 +61,7 @@ public class ClientController {
     @GetMapping(value="/add")
     public ModelAndView add(Client client) {
 
-        ModelAndView mv = new ModelAndView("/client_create");
+        ModelAndView mv = new ModelAndView("client_create");
         mv.addObject("client", client);
         return mv;
     }
@@ -73,6 +73,6 @@ public class ClientController {
         client.setCpf(cpf);
         client = clientService.create(client, password);
 
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:home");
     }
 }

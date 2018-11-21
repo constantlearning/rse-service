@@ -58,7 +58,7 @@ public class ServiceController {
     @GetMapping("/{id}")
     public ModelAndView serviceDetailView(@PathVariable(value="id") Long service_id) {
         Service service = this.serviceS.findById(service_id);
-        ModelAndView mv = new ModelAndView("/service_detail");
+        ModelAndView mv = new ModelAndView("service_detail");
         mv.addObject("service", service);
         return mv;
     }
@@ -90,7 +90,7 @@ public class ServiceController {
         Service service = this.serviceS.findById(service_id);
         service.setEnabled(true);
         this.serviceS.update(service);
-        ModelAndView mv = new ModelAndView("/service_detail");
+        ModelAndView mv = new ModelAndView("service_detail");
         mv.addObject("service", service);
         return mv;
     }
@@ -102,7 +102,7 @@ public class ServiceController {
         Service service = this.serviceS.findById(service_id);
         service.setEnabled(false);
         this.serviceS.update(service);
-        ModelAndView mv = new ModelAndView("/service_detail");
+        ModelAndView mv = new ModelAndView("service_detail");
         mv.addObject("service", service);
         return mv;
     }
@@ -119,7 +119,7 @@ public class ServiceController {
         service.setClient(client);
         service = this.serviceS.create(service);
 
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:home");
     }
 
     private CGIRequest dummyCgiRequest(Long serviceId, String language, Long howManyArguments, String code, Map<String,String> allRequestParams) {
